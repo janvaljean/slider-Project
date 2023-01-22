@@ -31,18 +31,20 @@ let slaytCount = models.length;
 
 let settings = {
     duration: "2000",
-    random : true,
+    random : false,
 };
 
 let interval;
 init(settings);
+// ----------------------------------------------------------------
 
-
+//  when ich klicke auf den Button an, index sich gesteigert ist 
 document.querySelector(".fa-arrow-circle-right").addEventListener("click", () => {
     index ++,
     showModel(index);
     console.log(index);
 });
+//  when ich klicke auf den Button an, index sich verringert ist 
 
 document.querySelector(".fa-arrow-circle-left").addEventListener("click", () => {
     index --,
@@ -50,17 +52,22 @@ document.querySelector(".fa-arrow-circle-left").addEventListener("click", () => 
     console.log(index);
 });
 
+// ----------------------------------------------------------------
+
+// when mouse kommt auf den Button an, slider gestopped
+
 document.querySelectorAll(".arrow").forEach(function (item) {item.addEventListener("mouseenter", function() {
     clearInterval(interval);
 })});
+//mouse weg und slider wieder funktioniert
 
 document.querySelectorAll(".arrow").forEach(function (item) {item.addEventListener("mouseleave", function() {
         init(settings);
 })});
 
 
-
-
+// ----------------------------------------------------------------
+// main function for slider changing
 function showModel(i) {
     index = i;
     if (i < 0) {
@@ -74,6 +81,8 @@ document.querySelector(".card-title").textContent = models[index].name;
 document.querySelector(".card-img-top").setAttribute("src", models[index].image);
 document.querySelector(".card-link").setAttribute("href", models[index].link)
 }
+// ----------------------------------------------------------------
+//dank der init function slider  jede 2 sekunde wieder funktioniert (setinterval - clearinterval )
 
 function init(settings) {
     let prev;
@@ -93,7 +102,7 @@ function init(settings) {
             if(slaytCount == index +1) 
             {
                 index = -1;
-                i
+                
 
             }
             showModel(index);
